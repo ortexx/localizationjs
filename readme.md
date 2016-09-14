@@ -19,7 +19,7 @@ let options = {
 
 let localeManager = new Localization(options);
 
-localeManager.defaultLocale() // output "en" locale, instance of Localization.Locale 
+localeManager.defaultLocale(); // output "en" locale, instance of Localization.Locale 
 localeManager.currentLocale("ru-RU"); // set "ru-RU" locale as current
 localeManager.currentLocale(); // output "ru-RU" locale, instance of Localization.Locale
 
@@ -39,13 +39,13 @@ let dictonaryEN = {
         ok: "ok",
         clickWith: "click %% times, before %% pm"
     }
-}
+};
 
 let dictonaryRU = {
     header: {
         title: "лучшие из лучших"
     }
-}
+};
 
 // add dictionary to manager for english(default) language
 localeManager.dictionary("en", dictonaryEN);
@@ -55,9 +55,9 @@ localeManager.dictionary("ru", dictonaryEN);
 
 localeManager.translate("header.title"); // output "лучшие из лучших", because of current locale more important
 localeManager.translate("header.description"); // output "we can do everything", because of current locale has no such value for this key
-localeManager.translate("buttons.clickWith", [5, "9:27"]) // output "click 5 times, before 9:27 pm"
-localeManager.translate("header.skills.0") // output "javascript"
-localeManager.translate("header.skills[1]") // output "nodejs"
+localeManager.translate("buttons.clickWith", [5, "9:27"]); // output "click 5 times, before 9:27 pm"
+localeManager.translate("header.skills.0"); // output "javascript"
+localeManager.translate("header.skills[1]"); // output "nodejs"
 
 localeManager.date(new Date()); // output date in current locale format using "Intl" library
 localeManager.currency(1000.50, "USD"); // output currency in current locale format using "Intl" library
