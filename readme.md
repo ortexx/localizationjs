@@ -1,5 +1,6 @@
 # Install 
 `npm install localizationjs`
+
 # About
 Module for localization of applications, include two classes:
 * Localization - main manager, include all functions
@@ -77,7 +78,7 @@ return instance of Localization. Options:
 * translateValueHandler - function-handler for translate function value. It allows you to change the final value if it is required by any rules
 
 ### .dictionary(locale, body, isMerge)
-if body is empty then return dictionary for specified locale, else create dictionary
+if body is empty then return dictionary for specified locale, else create dictionary  
 if isMerge is true then body merged with old dictionary, if it exists else replace it
 
 ### .defaultLocale(locale)
@@ -90,8 +91,8 @@ if locale is empty then return current locale else set it
 replace key to value using dictionaries 
 
 ### .has(locale, isStrict) {
-checks locale is default or current
-if isStrict is true then it checks the complete coincidence of language and country else only language. Default is false
+checks locale is default or current  
+if isStrict is true then it checks the complete coincidence of language and country else only language.   Default is false
 
 ### .supports(locale) {
 verifies the existence of the dictionary for the locale
@@ -103,11 +104,12 @@ get date in current locale format using "Intl" library
 get number in current locale format using "Intl" library
 
 ### .currency(num, currency, options) {
-get currency in current locale format using "Intl" library
+get currency in current locale format using "Intl" library  
 currency is string of ISO currency code, for example "USD"
 
 ### .brute(fn, excludeDefault)
-it allows you to sort out all spellings locale. if excludeDefault is true then it includes default locale variants too. Example:
+it allows you to sort out all spellings locale   
+if excludeDefault is true then it includes default locale variants too. Example:
 
 ```js
 localeManage.brute((val, next) => {
