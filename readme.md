@@ -60,6 +60,8 @@ localeManager.translate("buttons.clickWith", [5, "9:27"]); // output "click 5 ti
 localeManager.translate("header.skills.0"); // output "javascript"
 localeManager.translate("header.skills[1]"); // output "nodejs"
 
+localeManager.hasTranslation("header.skills.0") // get true
+
 localeManager.date(new Date()); // output date in current locale format using "Intl" library
 localeManager.currency(1000.50, "USD"); // output currency in current locale format using "Intl" library
 localeManager.number(15.88); // output number in current locale format using "Intl" library
@@ -87,25 +89,28 @@ if locale is empty then return default locale else set it
 ### .currentLocale(locale)
 if locale is empty then return current locale else set it
 
-### .translate(key, params, options) {
+### .translate(key, params, options) 
 replace key to value using dictionaries 
 
-### .has(locale, isStrict) {
+### .has(locale, isStrict) 
 checks locale is default or current  
 if isStrict is true then it checks the complete coincidence of language and country else only language.   Default is false
 
-### .supports(locale) {
+### .supports(locale) 
 verifies the existence of the dictionary for the locale
 
-### .date(date, options) {
+### .date(date, options) 
 get date in current locale format using "Intl" library
 
-### .number(num, options) {
+### .number(num, options) 
 get number in current locale format using "Intl" library
 
-### .currency(num, currency, options) {
+### .currency(num, currency, options) 
 get currency in current locale format using "Intl" library  
 currency is string of ISO currency code, for example "USD"
+
+### .hasTranslation(key) 
+get true if dictionary has key translation  
 
 ### .brute(fn, excludeDefault)
 it allows you to sort out all spellings locale   

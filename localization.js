@@ -222,6 +222,14 @@ class Localization {
         return this._defaultLocale = this.createLocale(locale);        
     }
     
+    hasTranslation(key) {
+        let dictDefault = this.dictionary(this._defaultLocale) || {};
+        let dictCurrent = this.dictionary(this._currentLocale) || {};
+        let dictionary = merge(dictDefault, dictCurrent);
+        
+        return this.valueByKey(dictionary, key) !== undefined;
+    }
+    
     valueByKey(obj, key) {
         key = key.replace(/\[([\d]+)\]/, '.$1');
         
