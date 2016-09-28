@@ -52,7 +52,7 @@ let dictonaryRU = {
 localeManager.dictionary("en", dictonaryEN);
 
 // add dictionary to manager for russian(current) language
-localeManager.dictionary("ru", dictonaryEN);
+localeManager.dictionary("ru", dictonaryRU);
 
 localeManager.translate("header.title"); // output "лучшие из лучших", because of current locale more important
 localeManager.translate("header.description"); // output "we can do everything", because of current locale has no such value for this key
