@@ -1,32 +1,40 @@
 {
-    "name": "localizationjs",
-    "version": "0.0.4",
-    "description": "Module for localization",
-    "main": "./index.js",
-    "author": {
-        "name": "Balasyan Alexandr",
-        "email": "mywebstreet@gmail.com"
-    },
-    "keywords": [
-        "language",
-        "translation",
-        "locale",
-        "identifier",
-        "translate",
-        "localization",
-        "internationalization",
-        "localize",
-        "globalize"
-    ],
-    "license": "MIT",
-    "dependencies": {
-        "intl": "*"
-    }, 
-	"repository" : { 
-		"type" : "git",
-		"url" : "https://github.com/ortexx/localizationjs"
-	},
-    "engines": {
-        "node": ">=5.0.0"
-    }	
+  "name": "localizationjs",
+  "version": "0.0.4",
+  "description": "Module for localization",
+  "main": "./index.js",
+  "author": {
+    "name": "Balasyan Alexandr",
+    "email": "mywebstreet@gmail.com"
+  },
+  "keywords": [
+    "language",
+    "translation",
+    "locale",
+    "identifier",
+    "translate",
+    "localization",
+    "internationalization",
+    "localize",
+    "globalize"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "intl": "*"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "lodash": "^4.17.4",
+    "mocha": "^3.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ortexx/localizationjs"
+  },
+  "engines": {
+    "node": ">=5.0.0"
+  }
 }

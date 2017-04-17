@@ -2,12 +2,12 @@
 
 const IntlPolyfill = require('intl');
 
-if(Intl) {
-    Intl.NumberFormat   = IntlPolyfill.NumberFormat;
-    Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
+if (global.Intl) {
+  Intl.NumberFormat = IntlPolyfill.NumberFormat;
+  Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
 }
 else {
-    global.Intl = IntlPolyfill;
+  global.Intl = IntlPolyfill;
 }
 
 const Localization = require('./localization');

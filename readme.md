@@ -2,29 +2,28 @@
 `npm install localizationjs`
 
 # About
-Module for localization of applications, include two classes:
-* Localization - main manager, include all functions
+Module for localization, includes two classes:
+
+* Localization - main manager, includes all functions
 
 * Localization.Locale - class to create a special locale objects
 
-Each locale value may be in the form: 'en', 'en-US', 'ru_RU', {language: 'en', country: 'US' } or instance of Localization.Locale
+Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', country: 'US' } or instance of Localization.Locale
 
 # Example
 ```js
 const Localization = require("localiztionjs");
 
 let options = {
-    defaultLocale: "en", // equivalently new Localization.Locale("en")
-    paramReplaceSign: "%%", // sign to insert text in the dictionary of dynamic values
+    defaultLocale: "en", // "en" is equivalent to new Localization.Locale("en")
 }
 
-let localeManager = new Localization(options);
+let locale = new Localization(options);
 
-localeManager.defaultLocale(); // output "en" locale, instance of Localization.Locale 
-localeManager.currentLocale("ru-RU"); // set "ru-RU" locale as current
-localeManager.currentLocale(); // output "ru-RU" locale, instance of Localization.Locale
+localeManager.defaultLocale(); returns default value is instance of Localization.Locale 
+localeManager.currentLocale("ru-RU"); // sets "ru-RU" locale as current
+localeManager.currentLocale(); // returns current value is instance of Localization.Locale
 
-// you can keep dictionaries how and where you like, but must be passed to the function as a js object
 let dictonaryEN = {
     header: {
         title: "the best of the best =)",
@@ -38,7 +37,8 @@ let dictonaryEN = {
     buttons: {
         click: "click",
         ok: "ok",
-        clickWith: "click %% times, before %% pm"
+        clickWith: "click %% times before %% pm",
+        clickOn: "{{ hours }}:{{ minutes }} pm"
     }
 };
 
@@ -48,69 +48,74 @@ let dictonaryRU = {
     }
 };
 
-// add dictionary to manager for english(default) language
-localeManager.dictionary("en", dictonaryEN);
+// add dictionary for english(default) language
+locale.dictionary("en", dictonaryEN);
 
-// add dictionary to manager for russian(current) language
-localeManager.dictionary("ru", dictonaryRU);
+// add dictionary for russian(current) language
+locale.dictionary("ru", dictonaryRU);
 
-localeManager.translate("header.title"); // output "лучшие из лучших", because of current locale more important
-localeManager.translate("header.description"); // output "we can do everything", because of current locale has no such value for this key
-localeManager.translate("buttons.clickWith", [5, "9:27"]); // output "click 5 times, before 9:27 pm"
-localeManager.translate("header.skills.0"); // output "javascript"
-localeManager.translate("header.skills[1]"); // output "nodejs"
+locale.translate("header.title"); // output is "лучшие из лучших", because current locale is more important
+locale.translate("header.description"); // output is "we can do everything", because current locale has not a value for this key
+locale.translate("buttons.clickWith", [5, "9:27"]); // output is "click 5 times before 9:27 pm"
+locale.translate("buttons.clickOn", { hours: "9", minutes: "27"}); // output is "9:27 pm"
+locale.translate("header.skills.0"); // output is "javascript"
+locale.translate("header.skills[1]"); // output is "nodejs"
 
-localeManager.hasTranslation("header.skills.0") // get true
+locale.hasTranslation("header.skills.0") // get true
+locale.hasTranslation("header.nonExistent") // get false
 
-localeManager.date(new Date()); // output date in current locale format using "Intl" library
-localeManager.currency(1000.50, "USD"); // output currency in current locale format using "Intl" library
-localeManager.number(15.88); // output number in current locale format using "Intl" library
+locale.date(new Date()); // output date in current locale format using "Intl" library
+locale.currency(1000.50, "USD"); // output currency in current locale format using "Intl" library
+locale.number(15.88); // output number in current locale format using "Intl" library
 
 ```
 
 # Localization API
 ### .constructor(options)
-return instance of Localization. Options:
+returns instance of Localization. Options:
+
 * defaultLocale, default is { language: "en", country: "US"}
 
-* paramReplaceSign, default is "%%" - sign to insert text in the dictionary of dynamic values
+* paramReplaceSign, default is "%%" - sign for array to replace text during a translation
 
-* translateParamsHandler - function-handler for translate function params. It allows you to change the final value of a parameter if it is required by any rules
+* paramObjectReplacePattern, default is { start: '{{', end: '}}' } - sign for object to replace text during a translation
 
-* translateValueHandler - function-handler for translate function value. It allows you to change the final value if it is required by any rules
+* translateParamsHandler [function] - will be called before every param replacement.
+
+* translateValueHandler [function] -  will be called before value replacement.
 
 ### .dictionary(locale, body, isMerge)
-if body is empty then return dictionary for specified locale, else create dictionary  
-if isMerge is true then body merged with old dictionary, if it exists else replace it
+if a body is empty then it returns a dictionary for a given locale else it creates a dictionary  
+if isMerge is true then a body will be merged with old dictionary
 
 ### .defaultLocale(locale)
-if locale is empty then return default locale else set it
+you can set default locale if  you will pass it or get if not
 
 ### .currentLocale(locale)
-if locale is empty then return current locale else set it
+you can set current locale if  you will pass it or get if not
 
 ### .translate(key, params, options) 
-replace key to value using dictionaries 
+gets translation of the key replacing all params
 
-### .has(locale, isStrict) 
+### .has(locale, isStrict = false) 
 checks locale is default or current  
-if isStrict is true then it checks the complete coincidence of language and country else only language.   Default is false
+if isStrict is true then it checks the complete coincidence of language and country else only language.
 
 ### .supports(locale) 
-verifies the existence of the dictionary for the locale
+checks locale has dictionary
 
 ### .date(date, options) 
-get date in current locale format using "Intl" library
+gets date in the current locale format using "Intl" library
 
 ### .number(num, options) 
-get number in current locale format using "Intl" library
+gets number in the current locale format using "Intl" library
 
 ### .currency(num, currency, options) 
-get currency in current locale format using "Intl" library  
+gets currency in the current locale format using "Intl" library  
 currency is string of ISO currency code, for example "USD"
 
 ### .hasTranslation(key) 
-get true if dictionary has key translation  
+gets true if dictionary has key translation  
 
 ### .brute(fn, excludeDefault)
 it allows you to sort out all spellings locale   
@@ -118,7 +123,7 @@ if excludeDefault is true then it includes default locale variants too. Example:
 
 ```js
 localeManage.brute((val, next) => {
-    console.log(val) // for "en-US" output is "en", "en-us", "en-US", "en_US" e.t.c
+    console.log(val) // for "en-US" output will be "en", "en-us", "en-US", "en_US" e.t.c
         
     if(!next()) {
         // end of shuffling 
@@ -126,7 +131,7 @@ localeManage.brute((val, next) => {
 })
 
 ```
-Or you can get all locale variants as array with localeManage.bruteVariants(excludeDefault)
+Or you can get all locale variants as array with locale.bruteVariants(excludeDefault)
 
 
 
