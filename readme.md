@@ -20,9 +20,9 @@ let options = {
 
 let locale = new Localization(options);
 
-localeManager.defaultLocale(); returns default value is instance of Localization.Locale 
-localeManager.currentLocale("ru-RU"); // sets "ru-RU" locale as current
-localeManager.currentLocale(); // returns current value is instance of Localization.Locale
+locale.defaultLocale(); returns default value is instance of Localization.Locale 
+locale.currentLocale("ru-RU"); // sets "ru-RU" locale as current
+locale.currentLocale(); // returns current value is instance of Localization.Locale
 
 let dictonaryEN = {
     header: {
