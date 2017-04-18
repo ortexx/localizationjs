@@ -20,7 +20,7 @@ let options = {
 
 let locale = new Localization(options);
 
-locale.defaultLocale(); //returns default value is instance of Localization.Locale 
+locale.defaultLocale(); // returns default value is instance of Localization.Locale 
 locale.currentLocale("ru-RU"); // sets "ru-RU" locale as current
 locale.currentLocale(); // returns current value is instance of Localization.Locale
 
@@ -61,8 +61,8 @@ locale.translate("buttons.clickOn", { hours: "9", minutes: "27"}); // output is 
 locale.translate("header.skills.0"); // output is "javascript"
 locale.translate("header.skills[1]"); // output is "nodejs"
 
-locale.hasTranslation("header.skills.0") // get true
-locale.hasTranslation("header.nonExistent") // get false
+locale.hasTranslation("header.skills.0") // gets true
+locale.hasTranslation("header.nonExistent") // gets false
 
 locale.date(new Date()); // output date in current locale format using "Intl" library
 locale.currency(1000.50, "USD"); // output currency in current locale format using "Intl" library
@@ -122,7 +122,7 @@ it allows you to sort out all spellings locale
 if excludeDefault is true then it includes default locale variants too. Example:
 
 ```js
-localeManage.brute((val, next) => {
+locale.brute((val, next) => {
     console.log(val) // for "en-US" output will be "en", "en-us", "en-US", "en_US" e.t.c
         
     if(!next()) {
