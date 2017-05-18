@@ -200,7 +200,7 @@ class Localization {
       this.dictionaries[LocaleString] = merge(dict || {}, body);
     }
 
-    this.dictionaries[LocaleString] = merge(body);
+    this.dictionaries[LocaleString] = merge({}, body);
     this.setFullDictionary();
     
     return  this.dictionaries[LocaleString];
