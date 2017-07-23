@@ -20,9 +20,9 @@ let options = {
 
 let locale = new Localization(options);
 
-locale.defaultLocale(); // returns default value is instance of Localization.Locale 
+locale.defaultLocale(); // returns default value - instance of Localization.Locale 
 locale.currentLocale("ru-RU"); // sets "ru-RU" locale as current
-locale.currentLocale(); // returns current value is instance of Localization.Locale
+locale.currentLocale(); // returns current value - instance of Localization.Locale
 
 let dictonaryEN = {
     header: {
@@ -54,19 +54,19 @@ locale.dictionary("en", dictonaryEN);
 // add dictionary for russian(current) language
 locale.dictionary("ru", dictonaryRU);
 
-locale.translate("header.title"); // output is "лучшие из лучших", because current locale is more important
-locale.translate("header.description"); // output is "we can do everything", because current locale has not a value for this key
-locale.translate("buttons.clickWith", [5, "9:27"]); // output is "click 5 times before 9:27 pm"
-locale.translate("buttons.clickOn", { hours: "9", minutes: "27"}); // output is "9:27 pm"
-locale.translate("header.skills.0"); // output is "javascript"
-locale.translate("header.skills[1]"); // output is "nodejs"
+locale.translate("header.title"); // "лучшие из лучших", because current locale is more important
+locale.translate("header.description"); // "we can do everything", because current locale has not a value for this key
+locale.translate("buttons.clickWith", [5, "9:27"]); // "click 5 times before 9:27 pm"
+locale.translate("buttons.clickOn", { hours: "9", minutes: "27"}); // "9:27 pm"
+locale.translate("header.skills.0"); // "javascript"
+locale.translate("header.skills[1]"); // "nodejs"
 
-locale.hasTranslation("header.skills.0") // gets true
-locale.hasTranslation("header.nonExistent") // gets false
+locale.hasTranslation("header.skills.0") // true
+locale.hasTranslation("header.nonExistent") // false
 
-locale.date(new Date()); // output date in current locale format using "Intl" library
-locale.currency(1000.50, "USD"); // output currency in current locale format using "Intl" library
-locale.number(15.88); // output number in current locale format using "Intl" library
+locale.date(new Date()); // date in current locale format using "Intl" library
+locale.currency(1000.50, "USD"); // currency in current locale format using "Intl" library
+locale.number(15.88); // number in current locale format using "Intl" library
 
 ```
 
@@ -85,21 +85,21 @@ returns instance of Localization. Options:
 * translateValueHandler [function] -  will be called before value replacement.
 
 ### .dictionary(locale, body, isMerge)
-if a body is empty then it returns a dictionary for a given locale else it creates a dictionary  
-if isMerge is true then a body will be merged with old dictionary
+if the __body__ is empty, then it returns a dictionary for a given locale, else it creates a dictionary  
+if __isMerge__ is true, then a body will be merged with old dictionary
 
 ### .defaultLocale(locale)
-you can set default locale if  you will pass it or get if not
+you can set the default locale, if you pass it, or get if you don't
 
 ### .currentLocale(locale)
-you can set current locale if  you will pass it or get if not
+you can set the current locale, if you pass it, or get if you don't
 
 ### .translate(key, params, options) 
 gets translation of the key replacing all params
 
 ### .has(locale, isStrict = false) 
 checks locale is default or current  
-if isStrict is true then it checks the complete coincidence of language and country else only language.
+if __isStrict__ is true, then it checks the complete coincidence of language and country, else only language.
 
 ### .supports(locale) 
 checks locale has dictionary
@@ -112,14 +112,14 @@ gets number in the current locale format using "Intl" library
 
 ### .currency(num, currency, options) 
 gets currency in the current locale format using "Intl" library  
-currency is string of ISO currency code, for example "USD"
+__currency__ is string of ISO currency code, for example "USD"
 
 ### .hasTranslation(key) 
 gets true if dictionary has key translation  
 
 ### .brute(fn, excludeDefault)
 it allows you to sort out all spellings locale   
-if excludeDefault is true then it includes default locale variants too. Example:
+if __excludeDefault__ is true, then it includes default locale variants too. Example:
 
 ```js
 locale.brute((val, next) => {
