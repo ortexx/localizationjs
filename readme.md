@@ -82,7 +82,7 @@ returns instance of Localization. Options:
 
 * translateParamsHandler [function] - will be called before every param replacement.
 
-* translateValueHandler [function] -  will be called before value replacement.
+* translateValueHandler [function] - will be called before value replacement.
 
 ### .dictionary(locale, body, isMerge)
 if the __body__ is empty, then it returns a dictionary for a given locale, else it creates a dictionary  
