@@ -2,7 +2,7 @@
 `npm install localizationjs`
 
 # About
-Module for localization, includes two classes:
+Module for a localization, includes two classes:
 
 * Localization - main manager, includes all functions
 
@@ -115,7 +115,7 @@ gets currency in the current locale format using "Intl" library
 __currency__ is string of ISO currency code, for example "USD"
 
 ### .hasTranslation(key) 
-gets true if dictionary has key translation  
+gets true if dictionary has translation of the key 
 
 ### .brute(fn, excludeDefault)
 it allows you to sort out all spellings locale   
