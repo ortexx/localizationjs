@@ -14,20 +14,20 @@ Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', co
 ```js
 const Localization = require("localiztionjs");
 
-let options = {
+const options = {
     defaultLocale: "en", // "en" is equivalent to new Localization.Locale("en")
 }
 
-let locale = new Localization(options);
+const locale = new Localization(options);
 
-locale.defaultLocale(); // returns default value - instance of Localization.Locale 
+locale.defaultLocale(); // returns default value 
 locale.currentLocale("ru-RU"); // sets "ru-RU" locale as current
-locale.currentLocale(); // returns current value - instance of Localization.Locale
+locale.currentLocale(); // returns current value 
 
-let dictonaryEN = {
+const dictonaryEN = {
     header: {
-        title: "the best of the best =)",
-        description: "we can do everything",
+        title: "Hello!",
+        description: "you can do everything",
         skills: [
             "javascript",
             "nodejs",
@@ -42,9 +42,9 @@ let dictonaryEN = {
     }
 };
 
-let dictonaryRU = {
+const dictonaryRU = {
     header: {
-        title: "лучшие из лучших"
+        title: "Привет!"
     }
 };
 
@@ -54,12 +54,18 @@ locale.dictionary("en", dictonaryEN);
 // add dictionary for russian(current) language
 locale.dictionary("ru", dictonaryRU);
 
-locale.translate("header.title"); // "лучшие из лучших", because current locale is more important
-locale.translate("header.description"); // "we can do everything", because current locale has not a value for this key
-locale.translate("buttons.clickWith", [5, "9:27"]); // "click 5 times before 9:27 pm"
-locale.translate("buttons.clickOn", { hours: "9", minutes: "27"}); // "9:27 pm"
-locale.translate("header.skills.0"); // "javascript"
-locale.translate("header.skills[1]"); // "nodejs"
+locale.translate("header.title"); 
+// => "Привет!", because current locale is more important
+locale.translate("header.description"); 
+// => "you can do everything", because current locale has not a value for that key
+locale.translate("buttons.clickWith", [5, "9:27"]); 
+// => "click 5 times before 9:27 pm"
+locale.translate("buttons.clickOn", { hours: "9", minutes: "27"}); 
+// => "9:27 pm"
+locale.translate("header.skills.0"); 
+// => "javascript"
+locale.translate("header.skills[1]"); 
+// => "nodejs"
 
 locale.hasTranslation("header.skills.0") // true
 locale.hasTranslation("header.nonExistent") // false
