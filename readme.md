@@ -70,9 +70,9 @@ locale.translate("header.skills[1]");
 locale.hasTranslation("header.skills.0") // true
 locale.hasTranslation("header.nonExistent") // false
 
-locale.date(new Date()); // date in current locale format using "Intl" library
-locale.currency(1000.50, "USD"); // currency in current locale format using "Intl" library
-locale.number(15.88); // number in current locale format using "Intl" library
+locale.date(new Date()); // date in the current locale format using "Intl" library
+locale.currency(1000.50, "USD"); // currency in the current locale format using "Intl" library
+locale.number(15.88); // number in the current locale format using "Intl" library
 
 ```
 
