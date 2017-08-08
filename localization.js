@@ -215,7 +215,7 @@
       this._currentLocale = this.createLocale(locale);
       this.setFullDictionary();
 
-      return this._currentLocale ;
+      return this._currentLocale;
     }
 
     defaultLocale(locale) {
@@ -226,7 +226,7 @@
       this._defaultLocale = this.createLocale(locale);
       this.setFullDictionary();
 
-      return this._defaultLocale ;
+      return this._defaultLocale;
     }
 
     setFullDictionary() {
