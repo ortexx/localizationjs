@@ -73,7 +73,6 @@ locale.hasTranslation("header.nonExistent") // false
 locale.date(new Date()); // date in the current locale format using "Intl" library
 locale.currency(1000.50, "USD"); // currency in the current locale format using "Intl" library
 locale.number(15.88); // number in the current locale format using "Intl" library
-
 ```
 
 # Localization API
