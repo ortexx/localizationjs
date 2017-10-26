@@ -11,6 +11,7 @@ Module for a localization, includes two classes:
 Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', country: 'US' } or instance of Localization.Locale
 
 # Example
+
 ```js
 const Localization = require("localiztionjs");
 
