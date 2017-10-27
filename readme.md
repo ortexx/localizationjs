@@ -16,7 +16,7 @@ Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', co
 const Localization = require("localiztionjs");
 
 const options = {
-    defaultLocale: "en", // "en" is equivalent to new Localization.Locale("en")
+  defaultLocale: "en", // "en" is equivalent to new Localization.Locale("en")
 }
 
 const locale = new Localization(options);
@@ -26,27 +26,27 @@ locale.currentLocale("ru-RU"); // sets "ru-RU" locale as current
 locale.currentLocale(); // returns current value 
 
 const dictonaryEN = {
-    header: {
-        title: "Hello!",
-        description: "you can do everything",
-        skills: [
-            "javascript",
-            "nodejs",
-            "html"
-        ]
-    },
-    buttons: {
-        click: "click",
-        ok: "ok",
-        clickWith: "click %% times before %% pm",
-        clickOn: "{{ hours }}:{{ minutes }} pm"
-    }
+  header: {
+    title: "Hello!",
+    description: "you can do everything",
+    skills: [
+      "javascript",
+      "nodejs",
+      "html"
+    ]
+  },
+  buttons: {
+    click: "click",
+    ok: "ok",
+    clickWith: "click %% times before %% pm",
+    clickOn: "{{ hours }}:{{ minutes }} pm"
+  }
 };
 
 const dictonaryRU = {
-    header: {
-        title: "Привет!"
-    }
+  header: {
+    title: "Привет!"
+  }
 };
 
 // add dictionary for english(default) language
@@ -129,11 +129,11 @@ if __excludeDefault__ is true, then it includes default locale variants too. Exa
 
 ```js
 locale.brute((val, next) => {
-    console.log(val) // for "en-US" output will be "en", "en-us", "en-US", "en_US" e.t.c
-        
-    if(!next()) {
-        // end of shuffling 
-    }
+  console.log(val) // for "en-US" output will be "en", "en-us", "en-US", "en_US" e.t.c
+      
+  if(!next()) {
+      // end of shuffling 
+  }
 })
 
 ```
