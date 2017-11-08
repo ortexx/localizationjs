@@ -8,7 +8,7 @@ Module for a localization, includes two classes:
 
 * Localization.Locale - class to create a special locale objects
 
-Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', country: 'US' } or instance of Localization.Locale
+Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', country: 'US' } or an instance of Localization.Locale
 
 # Example
 
