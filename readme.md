@@ -82,9 +82,9 @@ returns instance of Localization. Options:
 
 * defaultLocale, default is { language: "en", country: "US"}
 
-* paramReplaceSign, default is "%%" - sign for array to replace text during a translation
+* paramReplaceSign, default is "%%" - sign for an array to replace the text during a translation
 
-* paramObjectReplacePattern, default is { start: '{{', end: '}}' } - sign for object to replace text during a translation
+* paramObjectReplacePattern, default is { start: '{{', end: '}}' } - sign for an object to replace the text during a translation
 
 * translateParamsHandler [function] - will be called before every param replacement.
 
