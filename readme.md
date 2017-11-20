@@ -101,7 +101,7 @@ you can set the default locale, if you pass it, or get if you don't
 you can set the current locale, if you pass it, or get if you don't
 
 ### .translate(key, params, options) 
-gets translation of the key replacing all params
+gets a translation of the key replacing all params
 
 ### .has(locale, isStrict = false) 
 checks locale is default or current  
