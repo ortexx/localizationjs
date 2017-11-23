@@ -117,7 +117,7 @@ gets date in the current locale format using "Intl" library
 gets number in the current locale format using "Intl" library
 
 ### .currency(num, currency, options) 
-gets currency in the current locale format using "Intl" library  
+gets a currency in the current locale format using "Intl" library  
 __currency__ is string of ISO currency code, for example "USD"
 
 ### .hasTranslation(key) 
