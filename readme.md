@@ -125,7 +125,7 @@ gets true if dictionary has translation of the key
 
 ### .brute(fn, excludeDefault)
 it allows you to sort out all spellings locale   
-if __excludeDefault__ is true, then it includes default locale variants too. Example:
+if __excludeDefault__ is true, then it includes the default locale variants too. Example:
 
 ```js
 locale.brute((val, next) => {
