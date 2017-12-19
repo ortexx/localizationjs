@@ -92,7 +92,7 @@ returns instance of Localization. Options:
 
 ### .dictionary(locale, body, isMerge)
 if the __body__ is empty, then it returns a dictionary for a given locale, else it creates a dictionary  
-if __isMerge__ is true, then a body will be merged with old dictionary
+if __isMerge__ is true, then a body will be merged with the old dictionary
 
 ### .defaultLocale(locale)
 you can set the default locale, if you pass it, or get if you don't
