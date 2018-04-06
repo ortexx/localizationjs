@@ -163,12 +163,10 @@
 
       function next() {
         let val = variants[i];
-
         i++;
 
         if (val) {
           fn(val, next);
-
           return true;
         }
         else {
@@ -185,7 +183,6 @@
 
     dictionary(locale, body, isMerge) {
       locale = this.createLocale(locale);
-
       let LocaleString = locale.toString();
       let dict = this.dictionaries[LocaleString];
 
@@ -202,8 +199,7 @@
       }
 
       this.dictionaries[LocaleString] = merge({}, body);
-      this.setFullDictionary();
-      
+      this.setFullDictionary();      
       return  this.dictionaries[LocaleString];
     }
 
@@ -214,7 +210,6 @@
 
       this._currentLocale = this.createLocale(locale);
       this.setFullDictionary();
-
       return this._currentLocale;
     }
 
@@ -225,14 +220,12 @@
 
       this._defaultLocale = this.createLocale(locale);
       this.setFullDictionary();
-
       return this._defaultLocale;
     }
 
     setFullDictionary() {
       let dictDefault = this._defaultLocale? this.dictionary(this._defaultLocale): {};
       let dictCurrent = this._currentLocale? this.dictionary(this._currentLocale): {};
-
       this.fullDictionary = merge(dictDefault, dictCurrent);
     }
 
@@ -242,7 +235,6 @@
 
     valueByKey(obj, key) {
       key = key.replace(/\[([^\[\]]+)\]/g, '.$1');
-
       let levels = key.split(".");
       let mask = obj;
       let isUndefined = false;
@@ -261,7 +253,6 @@
       }
 
       value = isUndefined ? undefined : mask[levels[levels.length - 1]];
-
       return value;
     }
 
@@ -274,7 +265,6 @@
       let value;
       let i = 0;
       let reg = this.paramObjectReplacePattern;
-
       options = merge({}, defaults, options || {});
       value = this.valueByKey(this.fullDictionary, key);
       value = options.translateValueHandler(value, key, params);
@@ -283,16 +273,13 @@
         if(Array.isArray(params)) {
           value = value.replace(new RegExp(this.paramArrayReplaceSign, 'g'), () => {
             let val = options.translateParamsHandler(params[i], key, params);
-
             i++;
-
             return val;
           });
         }
         else {
           value = value.replace(new RegExp(reg.start + '\\s*([\\w]+)\\s*' + reg.end, 'g'), (m, v) => {
             let val = options.translateParamsHandler(params[v], key, params);
-
             return val;
           });
         }
@@ -303,13 +290,11 @@
 
     date(date, options) {
       let intl = new Intl.DateTimeFormat(this._currentLocale.toString(), options);
-
       return intl.format(date);
     }
 
     number(num, options) {
       let intl = new Intl.NumberFormat(this._currentLocale.toString(), options);
-
       return intl.format(num);
     }
 
@@ -320,7 +305,6 @@
       });
 
       let intl = new Intl.NumberFormat(this._currentLocale.toString(), options);
-
       return intl.format(num);
     }
   }
