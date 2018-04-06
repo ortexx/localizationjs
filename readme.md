@@ -4,9 +4,9 @@
 # About
 Localization module includes two classes:
 
-* Localization - main manager, includes all functions
+* Localization - main class
 
-* Localization.Locale - class to create a special locale objects
+* Localization.Locale - class to create a special locale object
 
 Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', country: 'US' } or an instance of Localization.Locale
 
@@ -14,6 +14,7 @@ Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', co
 
 ```js
 const Localization = require("localizationjs");
+
 
 const options = {
   defaultLocale: "en", // "en" is equivalent to new Localization.Locale("en")
@@ -58,7 +59,7 @@ locale.dictionary("ru", dictonaryRU);
 locale.translate("header.title"); 
 // => "Привет!", because current locale is more important
 locale.translate("header.description"); 
-// => "you can do everything", because current locale has not a value for that key
+// => "you can do everything", because the current locale has not a value for that key
 locale.translate("buttons.clickWith", [5, "9:27"]); 
 // => "click 5 times before 9:27 pm"
 locale.translate("buttons.clickOn", { hours: "9", minutes: "27"}); 
@@ -86,42 +87,42 @@ returns instance of Localization. Options:
 
 * paramObjectReplacePattern, default is { start: '{{', end: '}}' } - sign for an object to replace the text during a translation
 
-* translateParamsHandler [function] - will be called before every param replacement.
+* translateParamsHandler [function] - called before every param replacement.
 
-* translateValueHandler [function] - will be called before value replacement.
+* translateValueHandler [function] - called before value replacement.
 
 ### .dictionary(locale, body, isMerge)
-if the __body__ is empty, then it returns a dictionary for a given locale, else it creates a dictionary  
-if __isMerge__ is true, then a body will be merged with the old dictionary
+if the __body__ is empty, then it returns a dictionary for the passed locale, otherwise it creates a dictionary  
+if __isMerge__ is true, then the body will be merged with the old dictionary
 
-### .defaultLocale(locale)
-you can set the default locale, if you pass it, or get if you don't
+### .defaultLocale([locale])
+to set the default locale or to get it.
 
-### .currentLocale(locale)
-you can set the current locale, if you pass it, or get if you don't
+### .currentLocale([locale])
+to set the current locale or to get it.
 
 ### .translate(key, params, options) 
-gets a translation of the key replacing all params
+to get a translation of the key replacing all params
 
 ### .has(locale, isStrict = false) 
 checks locale is default or current  
-if __isStrict__ is true, then it checks the complete coincidence of language and country, else only language.
+if __isStrict__ is true, it checks the complete coincidence of language and country, otherwise it is only language.
 
 ### .supports(locale) 
-checks locale has dictionary
+to check the passed locale has a dictionary.
 
 ### .date(date, options) 
-gets date in the current locale format using "Intl" library
+to get date in the current locale format using "Intl" library
 
 ### .number(num, options) 
-gets number in the current locale format using "Intl" library
+to get number in the current locale format using "Intl" library
 
 ### .currency(num, currency, options) 
-gets a currency in the current locale format using "Intl" library  
+to get the currency in the current locale format using "Intl" library  
 __currency__ is string of ISO currency code, for example "USD"
 
 ### .hasTranslation(key) 
-gets true if dictionary has translation of the key 
+check the dictionary has a translation for this key 
 
 ### .brute(fn, excludeDefault)
 it allows you to sort out all spellings locale   
