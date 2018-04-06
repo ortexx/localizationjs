@@ -2,7 +2,7 @@
 `npm install localizationjs`
 
 # About
-Module for a localization, includes two classes:
+Localization module includes two classes:
 
 * Localization - main manager, includes all functions
 
@@ -13,7 +13,7 @@ Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', co
 # Example
 
 ```js
-const Localization = require("localiztionjs");
+const Localization = require("localizationjs");
 
 const options = {
   defaultLocale: "en", // "en" is equivalent to new Localization.Locale("en")

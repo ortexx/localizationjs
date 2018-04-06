@@ -1,7 +1,7 @@
 {
   "name": "localizationjs",
-  "version": "0.1.7",
-  "description": "Module for a localization",
+  "version": "0.1.8",
+  "description": "Localization module",
   "main": "./index.js",
   "author": {
     "name": "Balasyan Alexandr",
@@ -15,6 +15,7 @@
     "translate",
     "localization",
     "internationalization",
+    "intl",
     "localize",
     "globalize"
   ],
