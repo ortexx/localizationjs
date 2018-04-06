@@ -31,7 +31,6 @@
       }
       else if (typeof locale == "string") {
         let info = locale.split('-');
-
         this.language = info[0].toLowerCase();
 
         if (info.length > 1) {
@@ -93,7 +92,6 @@
       this.paramArrayReplaceSign = this.options.paramArrayReplaceSign;
       this.paramObjectReplacePattern = this.options.paramObjectReplacePattern;
       this.dictionaries = {};
-
       this.defaultLocale(this.options.defaultLocale || {language: 'en', country: 'US'});
       this.currentLocale(this._defaultLocale);
     }
@@ -104,9 +102,8 @@
 
     supports(locale) {
       locale = this.createLocale(locale);
-
-      let LocaleString = locale.toString();
-      let dict = this.dictionaries[LocaleString];
+      let localeString = locale.toString();
+      let dict = this.dictionaries[localeString];
 
       if (!dict) {
         dict = this.dictionaries[locale.language];

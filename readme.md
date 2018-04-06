@@ -132,7 +132,7 @@ locale.brute((val, next) => {
   console.log(val) // for "en-US" output will be "en", "en-us", "en-US", "en_US" e.t.c
       
   if(!next()) {
-      // end of shuffling 
+      // end of the shuffling 
   }
 })
 
