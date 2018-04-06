@@ -92,7 +92,7 @@ returns instance of Localization. Options:
 * translateValueHandler [function] - called before value replacement.
 
 ### .dictionary(locale, body, isMerge)
-if the __body__ is empty, then it returns a dictionary for the passed locale, otherwise it creates a dictionary  
+if __body__ is empty, then it returns a dictionary for the passed locale, otherwise it creates a dictionary  
 if __isMerge__ is true, then the body will be merged with the old dictionary
 
 ### .defaultLocale([locale])
