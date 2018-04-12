@@ -15,7 +15,6 @@ Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', co
 ```js
 const Localization = require("localizationjs");
 
-
 const options = {
   defaultLocale: "en", // "en" is equivalent to new Localization.Locale("en")
 }
@@ -87,13 +86,13 @@ returns instance of Localization. Options:
 
 * paramObjectReplacePattern, default is { start: '{{', end: '}}' } - sign for an object to replace the text during a translation
 
-* translateParamsHandler [function] - called before every param replacement.
+* translateParamsHandler [function] - called before each param replacement.
 
 * translateValueHandler [function] - called before value replacement.
 
-### .dictionary(locale, body, isMerge)
+### .dictionary(locale, [body], [merge=false])
 if __body__ is empty, then it returns a dictionary for the passed locale, otherwise it creates a dictionary  
-if __isMerge__ is true, then the body will be merged with the old dictionary
+if __merge__ is true, then the body will be merged with the old dictionary
 
 ### .defaultLocale([locale])
 to set the default locale or to get it.
@@ -101,11 +100,11 @@ to set the default locale or to get it.
 ### .currentLocale([locale])
 to set the current locale or to get it.
 
-### .translate(key, params, options) 
+### .translate(key, [params], [options]) 
 to get a translation of the key replacing all params
 
-### .has(locale, isStrict = false) 
-checks locale is default or current  
+### .has(locale, [isStrict = false]) 
+to checks locale is default/current  
 if __isStrict__ is true, it checks the complete coincidence of language and country, otherwise it is only language.
 
 ### .supports(locale) 
@@ -117,15 +116,15 @@ to get date in the current locale format using "Intl" library
 ### .number(num, options) 
 to get number in the current locale format using "Intl" library
 
-### .currency(num, currency, options) 
+### .currency(num, currency, [options]) 
 to get the currency in the current locale format using "Intl" library  
-__currency__ is string of ISO currency code, for example "USD"
+__currency__ is a string of ISO currency code, for example "USD"
 
 ### .hasTranslation(key) 
-check the dictionary has a translation for this key 
+to check the dictionary has a translation for this key 
 
-### .brute(fn, excludeDefault)
-it allows you to sort out all spellings locale   
+### .brute(fn, [excludeDefault=false])
+it allows you to sort out all spellings of the locale 
 if __excludeDefault__ is true, then it includes the default locale variants too. Example:
 
 ```js
