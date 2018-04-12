@@ -35,11 +35,11 @@ describe('Localization:', function () {
   ];
 
   describe('Localization', function() {
-    it('#constructor()', function() {
+    it('should check #constructor()', function() {
       localization = new Localization();
     });
 
-    it('#dictionary()', function() {
+    it('should check .dictionary()', function() {
       let dict = localization.dictionary('en', en);
 
       assert.equal(JSON.stringify(dict), JSON.stringify(en), 'adding dict');
@@ -52,12 +52,12 @@ describe('Localization:', function () {
       assert.isUndefined(localization.dictionary('en').newValue, 'replacing old dict');
     });
 
-    it('#hasTranslation()', function() {
+    it('should check .hasTranslation()', function() {
       assert.isOk(localization.hasTranslation('nested.hello'));
       assert.isNotOk(localization.hasTranslation('undefined'));
     });
 
-    it('#translate()', function() {
+    it('should check .translate()', function() {
       assert.equal(localization.translate('hello'), 'hello', 'check simple');
       assert.equal(localization.translate('nested.level2.hello'), 'nestedLevel2Hello', 'check nested dot syntax');
       assert.equal(localization.translate('nested[level2][hello]'), 'nestedLevel2Hello', 'check nested brace syntax');
@@ -68,12 +68,12 @@ describe('Localization:', function () {
       assert.equal(localization.translate('hello'), 'привет', 'check changed language translation');
     });
 
-    it('#bruteVariants()', function() {
+    it('should check .bruteVariants()', function() {
       assert.equal(JSON.stringify(localization.bruteVariants()), JSON.stringify(variants), 'check all');
       assert.equal(JSON.stringify(localization.bruteVariants(true)), JSON.stringify(variants.slice(0, 8)), 'check only current');
     });
 
-    it('#brute()', function() {
+    it('should check .brute()', function() {
       let bruteVariants = [];
 
       localization.brute((lang, next) => {
@@ -85,12 +85,12 @@ describe('Localization:', function () {
       })
     });
 
-    it('#supports()', function() {
+    it('should check .supports()', function() {
       assert.isOk(localization.supports('en'), 'should support');
       assert.isNotOk(localization.supports('de'), 'should not support');
     });
 
-    it('#has()', function() {
+    it('should check .has()', function() {
       assert.isOk(localization.has('en-US'), 'should have');
       assert.isNotOk(localization.has('de'), 'should not have');
       assert.isNotOk(localization.has('en-UK', true), 'should not have too');
