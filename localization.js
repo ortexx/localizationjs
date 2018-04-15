@@ -223,7 +223,7 @@
     setFullDictionary() {
       let dictDefault = this._defaultLocale? this.dictionary(this._defaultLocale): {};
       let dictCurrent = this._currentLocale? this.dictionary(this._currentLocale): {};
-      this.fullDictionary = merge(dictDefault, dictCurrent);
+      this.fullDictionary = merge(merge({}, dictDefault), dictCurrent);
     }
 
     hasTranslation(key) {
