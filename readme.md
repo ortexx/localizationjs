@@ -67,7 +67,7 @@ locale.addDict("en", dictonaryEN);
 locale.addDict("ru", dictonaryRU);
 
 // current locale has priority
-locale.translate("header.title"); //  >> Привет!
+locale.translate("header.title"); // >> Привет!
 
 // current locale has not this translation, so take it from the default
 locale.translate("header.description"); // >> you can do everything
@@ -79,11 +79,11 @@ locale.translate("buttons.checkArrayParams", [5, "9:27"]); // >> click 5 times
 locale.translate("buttons.checkObjectParams", { hours: "9", minutes: "27" }); // >> "9:27 pm" 
 
 // get the value from an array
-locale.translate("header.skills[1]"); // > nodejs
+locale.translate("header.skills[1]"); // >> nodejs
 
 // check the necessary translation exists
-locale.hasTranslation("header.skills[0]"); // true
-locale.hasTranslation("header.nonExistent"); // false
+locale.hasTranslation("header.skills[0]"); // >> true
+locale.hasTranslation("header.nonExistent"); // >> false
 
 // date in the current locale format
 locale.date(new Date()); 
@@ -95,8 +95,9 @@ locale.currency(279.99, "USD");
 locale.number(27.99);
 ```
 
+### Change signs of translation parameters 
+
 ```javascript
-  const fs = require("fs");
   const Localization = require("localizationjs");
 
   const locale = new Localization({ 
@@ -115,10 +116,10 @@ locale.number(27.99);
   locale.translate('testNewArraySign', { name: 'world' }); // >> Hello world
 
   // get non-existent translation by default (if undefined it returns the key)
-  locale.translate('nonExistent') // >> nonExistent
+  locale.translate('nonExistent'); // >> nonExistent
 
   // get non-existent params by default
-  locale.translate('testNewArraySign') // >> "Hello "
+  locale.translate('testNewArraySign'); // >> "Hello "
   
   // change the value getting logic
   locale.translateValueHandler = function (value) {
@@ -134,11 +135,13 @@ locale.number(27.99);
   }
 
   // get non-existent translation with the manual handling
-  locale.translate('nonExistent') // >> undefined
+  locale.translate('nonExistent'); // >> Hello undefined
 
   // get non-existent params with the manual handling
-  locale.translate('testNewArraySign') // >> Hello *
+  locale.translate('testNewArraySign'); // >> Hello *
 ```
+
+### Add all dictionaries from files we have to the locale manager
 
 ```javascript
   const fs = require("fs");
@@ -148,8 +151,7 @@ locale.number(27.99);
     defaultLocale: 'en_us'
     currentLocale: 'ru-ru',
   });
-
-  // add all dictionaries from files we have to the locale manager
+ 
   const currentVariants = locale.getLocaleVariants(locale.getCurrentLocele());
   const defaultVariants = locale.getLocaleVariants(locale.getDefaultLocele());
   const variants = currentVariants.concat(defaultVariants);
