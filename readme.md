@@ -93,6 +93,17 @@ locale.currency(279.99, "USD");
 
 // number in the current locale format
 locale.number(27.99);
+
+// check the dicionary exists
+locale.hasDict('en'); // >> true
+
+// remove the dicionary
+locale.removeDict('en');
+
+// check the manager has locale
+locale.isLocale('es') // >> false
+locale.isLocale('en') // >> true
+locale.isLocale('ru') // >> true
 ```
 
 ### Change signs of translation parameters 
