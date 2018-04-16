@@ -1,7 +1,7 @@
 /*!
  * Localization module
  * 
- * @version 2.0.0
+ * @version 2.0.1
  * @author Alexandr Balasyan <mywebstreet@gmail.com>
  * {@link https://github.com/ortexx/localizationjs}
  */
