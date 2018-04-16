@@ -1,29 +1,40 @@
-# Install 
-`npm install localizationjs`
+# localizationjs
+Localization module allows you to translate words via dictionaries, localize numbers, currencies, dates.
 
-# About
-Localization module includes two classes:
+You can use this library on both the client and server sides.
 
-* Localization - main class
+## Installation 
 
-* Localization.Locale - class to create a special locale object
+Via npm
 
-Any locale value might be passed as: 'en', 'en-US', 'ru_RU', {language: 'en', country: 'US' } or an instance of Localization.Locale
+```npm install localizationjs```
 
-# Example
+As a script
 
-```js
+```<script src="localization.min.js"></script>```
+
+## Examples
+
+```javascript
 const Localization = require("localizationjs");
 
-const options = {
-  defaultLocale: "en", // "en" is equivalent to new Localization.Locale("en")
-}
+// create a locale manager
+const locale = new Localization({ defaultLocale: "en" });
 
-const locale = new Localization(options);
+// get the default locale
+locale.getDefaultLocale() // >> { language: 'en' }
 
-locale.defaultLocale(); // returns default value 
-locale.currentLocale("ru-RU"); // sets "ru-RU" locale as current
-locale.currentLocale(); // returns current value 
+// set the current locale
+locale.setCurrentLocale("ru-RU");
+
+// get the current locale
+locale.getCurrentLocale() // >> { language: 'ru', country: 'RU }
+
+// rewrite the default locale
+locale.setDefaultLocale("en-US"); 
+
+// check what is locale
+locale.getCurrentLocale() instanceof Localization.Locale // >> true
 
 const dictonaryEN = {
   header: {
@@ -36,10 +47,10 @@ const dictonaryEN = {
     ]
   },
   buttons: {
-    click: "click",
-    ok: "ok",
-    clickWith: "click %% times before %% pm",
-    clickOn: "{{ hours }}:{{ minutes }} pm"
+    event: "click",
+    status: "ok",
+    checkArrayParams: "click %% times before %% pm",
+    checkObjectParams: "{{ hours }}:{{ minutes }} pm"
   }
 };
 
@@ -49,96 +60,109 @@ const dictonaryRU = {
   }
 };
 
-// add dictionary for english(default) language
-locale.dictionary("en", dictonaryEN);
+// add a dictionary for english language
+locale.addDict("en", dictonaryEN);
 
-// add dictionary for russian(current) language
-locale.dictionary("ru", dictonaryRU);
+// add a dictionary for russian language
+locale.addDict("ru", dictonaryRU);
 
-locale.translate("header.title"); 
-// => "Привет!", because current locale is more important
-locale.translate("header.description"); 
-// => "you can do everything", because the current locale has not a value for that key
-locale.translate("buttons.clickWith", [5, "9:27"]); 
-// => "click 5 times before 9:27 pm"
-locale.translate("buttons.clickOn", { hours: "9", minutes: "27"}); 
-// => "9:27 pm"
-locale.translate("header.skills.0"); 
-// => "javascript"
-locale.translate("header.skills[1]"); 
-// => "nodejs"
+// current locale has priority
+locale.translate("header.title"); //  >> Привет!
 
-locale.hasTranslation("header.skills.0") // true
-locale.hasTranslation("header.nonExistent") // false
+// current locale has not this translation, so take it from the default
+locale.translate("header.description"); // >> you can do everything
 
-locale.date(new Date()); // date in the current locale format using "Intl" library
-locale.currency(1000.50, "USD"); // currency in the current locale format using "Intl" library
-locale.number(15.88); // number in the current locale format using "Intl" library
+// pass the params as array
+locale.translate("buttons.checkArrayParams", [5, "9:27"]); // >> click 5 times 
+
+// pass the params as object
+locale.translate("buttons.checkObjectParams", { hours: "9", minutes: "27" }); // >> "9:27 pm" 
+
+// get the value from an array
+locale.translate("header.skills[1]"); // > nodejs
+
+// check the necessary translation exists
+locale.hasTranslation("header.skills[0]"); // true
+locale.hasTranslation("header.nonExistent"); // false
+
+// date in the current locale format
+locale.date(new Date()); 
+
+// currency in the current locale format
+locale.currency(279.99, "USD"); 
+
+// number in the current locale format
+locale.number(27.99);
 ```
 
-# Localization API
-### .constructor(options)
-returns instance of Localization. Options:
+```javascript
+  const fs = require("fs");
+  const Localization = require("localizationjs");
 
-* defaultLocale, default is { language: "en", country: "US"}
+  const locale = new Localization({ 
+    defaultLocale: 'en_US'
+    currentLocale: { language: "ru", country: "RU" },
+    arraySign: '???',
+    objectPattern: { start: "${", end: "}" }
+  });
 
-* paramReplaceSign, default is "%%" - sign for an array to replace the text during a translation
+  locale.addDict("en", {
+    testNewArraySign: "Hello ???"
+    testNewObjectPattern: "Hello ${ name }"
+  });
 
-* paramObjectReplacePattern, default is { start: '{{', end: '}}' } - sign for an object to replace the text during a translation
+  locale.translate('testNewArraySign', ['world']); // >> Hello world
+  locale.translate('testNewArraySign', { name: 'world' }); // >> Hello world
 
-* translateParamsHandler [function] - called before each param replacement.
+  // get non-existent translation by default (if undefined it returns the key)
+  locale.translate('nonExistent') // >> nonExistent
 
-* translateValueHandler [function] - called before value replacement.
-
-### .dictionary(locale, [body], [merge=false])
-if __body__ is empty, then it returns a dictionary for the passed locale, otherwise it creates a dictionary  
-if __merge__ is true, then the body will be merged with the old dictionary
-
-### .defaultLocale([locale])
-to set the default locale or to get it.
-
-### .currentLocale([locale])
-to set the current locale or to get it.
-
-### .translate(key, [params], [options]) 
-to get a translation of the key replacing all params
-
-### .has(locale, [isStrict = false]) 
-to checks locale is default/current  
-if __isStrict__ is true, it checks the complete coincidence of language and country, otherwise it is only language.
-
-### .supports(locale) 
-to check the passed locale has a dictionary.
-
-### .date(date, options) 
-to get date in the current locale format using "Intl" library
-
-### .number(num, options) 
-to get number in the current locale format using "Intl" library
-
-### .currency(num, currency, [options]) 
-to get the currency in the current locale format using "Intl" library  
-__currency__ is a string of ISO currency code, for example "USD"
-
-### .hasTranslation(key) 
-to check the dictionary has a translation for this key 
-
-### .brute(fn, [excludeDefault=false])
-it allows you to sort out all spellings of the locale 
-if __excludeDefault__ is true, then it includes the default locale variants too. Example:
-
-```js
-locale.brute((val, next) => {
-  console.log(val) // for "en-US" output will be "en", "en-us", "en-US", "en_US" e.t.c
-      
-  if(!next()) {
-      // end of the shuffling 
+  // get non-existent params by default
+  locale.translate('testNewArraySign') // >> "Hello "
+  
+  // change the value getting logic
+  locale.translateValueHandler = function (value) {
+    return value;
   }
-})
 
+  locale.translateParamsHandler = function (value) {
+    if(!value) {
+      return "*";
+    }
+
+    return value;
+  }
+
+  // get non-existent translation with the manual handling
+  locale.translate('nonExistent') // >> undefined
+
+  // get non-existent params with the manual handling
+  locale.translate('testNewArraySign') // >> Hello *
 ```
-Or you can get all locale variants as array with locale.bruteVariants(excludeDefault)
 
+```javascript
+  const fs = require("fs");
+  const Localization = require("localizationjs");
+
+  const locale = new Localization({ 
+    defaultLocale: 'en_us'
+    currentLocale: 'ru-ru',
+  });
+
+  // add all dictionaries from files we have to the locale manager
+  const currentVariants = locale.getLocaleVariants(locale.getCurrentLocele());
+  const defaultVariants = locale.getLocaleVariants(locale.getDefaultLocele());
+  const variants = currentVariants.concat(defaultVariants);
+
+  for (let i = 0; i < variants.length; i++) {
+    const variant = variants[i];
+    const filePath = "/dicts/" + variant + ".json";
+
+    if(fs.existsSync(filePath))) {
+      locale.addDict(variant, require(filePath));      
+    }
+  }
+```
 
 
 
