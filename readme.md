@@ -152,8 +152,8 @@ locale.number(27.99);
     currentLocale: 'ru-ru',
   });
  
-  const currentVariants = locale.getLocaleVariants(locale.getCurrentLocele());
-  const defaultVariants = locale.getLocaleVariants(locale.getDefaultLocele());
+  const currentVariants = locale.getLocaleVariants(locale.getCurrentLocale());
+  const defaultVariants = locale.getLocaleVariants(locale.getDefaultLocale());
   const variants = currentVariants.concat(defaultVariants);
 
   for (let i = 0; i < variants.length; i++) {
