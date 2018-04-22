@@ -26,7 +26,7 @@ export class Locale {
     }
 
     if(!this.language) {
-      throw new Error('Local instance must have at leat language property');
+      throw new Error('Local instance must have at least language property');
     }
 
     this.language = this.language.toLowerCase();
