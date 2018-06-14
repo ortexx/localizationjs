@@ -112,14 +112,14 @@ locale.isLocale('ru') // >> true
   const Localization = require("localizationjs");
 
   const locale = new Localization({ 
-    defaultLocale: 'en_US'
+    defaultLocale: 'en_US',
     currentLocale: { language: "ru", country: "RU" },
     arraySign: '???',
     objectPattern: { start: "${", end: "}" }
   });
 
   locale.addDict("en", {
-    testNewArraySign: "Hello ???"
+    testNewArraySign: "Hello ???",
     testNewObjectPattern: "Hello ${ name }"
   });
 
@@ -159,8 +159,8 @@ locale.isLocale('ru') // >> true
   const Localization = require("localizationjs");
 
   const locale = new Localization({ 
-    defaultLocale: 'en_us'
-    currentLocale: 'ru-ru',
+    defaultLocale: 'en_us',
+    currentLocale: 'ru-ru'
   });
  
   const currentVariants = locale.getLocaleVariants(locale.getCurrentLocale());
