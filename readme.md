@@ -33,7 +33,7 @@ locale.getCurrentLocale() // >> { language: 'ru', country: 'RU }
 // rewrite the default locale
 locale.setDefaultLocale("en-US"); 
 
-// check what is locale
+// check the locale has right format
 locale.getCurrentLocale() instanceof Localization.Locale // >> true
 
 const dictonaryEN = {
@@ -60,13 +60,13 @@ const dictonaryRU = {
   }
 };
 
-// add a dictionary for english language
+// add the dictionary for english language
 locale.addDict("en", dictonaryEN);
 
-// add a dictionary for russian language
+// add the dictionary for russian language
 locale.addDict("ru", dictonaryRU);
 
-// current locale has priority
+// check the current locale has priority
 locale.translate("header.title"); // >> Привет!
 
 // current locale has not this translation, so take it from the default
