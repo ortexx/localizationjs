@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { merge, has, get, escapeRegExp } from 'lodash';
 
 /**
  * Class to create instances of locale
@@ -76,7 +76,7 @@ export default class Localization {
       objectPattern: { start: '{{', end: '}}' }
     };
 
-    this.options = _.merge(defaults, options);
+    this.options = merge(defaults, options);
     this.dicts = {};    
     this.defaultLocale = new Locale(this.options.defaultLocale || { language: 'en', country: 'US' });
     this.currentLocale = new Locale(this.options.currentLocale || this.defaultLocale);
@@ -224,7 +224,7 @@ export default class Localization {
    */
   addDict(locale, dict) {
     locale = new Locale(locale);
-    this.dicts[locale.toString()] = _.merge({}, dict);
+    this.dicts[locale.toString()] = merge({}, dict);
   }
 
   /**
@@ -237,7 +237,7 @@ export default class Localization {
     locale = new Locale(locale);
     let localName = locale.toString();
     let current = this.dicts[localName] || {};
-    this.dicts[localName] = _.merge({}, current, dict);
+    this.dicts[localName] = merge({}, current, dict);
   }
 
   /**
@@ -256,7 +256,7 @@ export default class Localization {
    * @returns {object}
    */
   getFullDict() {
-    return _.merge({}, this.getDict(this.defaultLocale), this.getDict(this.currentLocale));
+    return merge({}, this.getDict(this.defaultLocale), this.getDict(this.currentLocale));
   }
 
   /**
@@ -266,7 +266,7 @@ export default class Localization {
    * @returns {boolean}
    */
   hasTranslation(key) {
-    return _.has(this.getFullDict(), key);
+    return has(this.getFullDict(), key);
   }
 
   /**
@@ -276,20 +276,20 @@ export default class Localization {
    * @param {object|array} [params] 
    */
   translate(key, params = null) {
-    let value = _.get(this.getFullDict(), key);
+    let value = get(this.getFullDict(), key);
     
     if (typeof value == 'string') {
       if(!params || Array.isArray(params)) {
         let i = 0;  
-        value = value.replace(new RegExp(_.escapeRegExp(this.options.arraySign), 'g'), () => {
+        value = value.replace(new RegExp(escapeRegExp(this.options.arraySign), 'g'), () => {
           return this.translateParamsHandler(params? params[i++]: undefined, key, params);
         });
       }
 
       if(!params || typeof params == 'object') {
         const pattern = this.options.objectPattern;
-        const start = _.escapeRegExp(pattern.start);
-        const end = _.escapeRegExp(pattern.end);
+        const start = escapeRegExp(pattern.start);
+        const end = escapeRegExp(pattern.end);
         value = value.replace(new RegExp(start + '\\s*([\\w]+)\\s*' + end, 'g'), (m, v) => {
           return this.translateParamsHandler(params? params[v]: undefined, key, params);
         });
@@ -329,7 +329,7 @@ export default class Localization {
    * @param {object} options 
    */
   currency(num, currency, options = {}) {
-    options = _.merge({}, options, {
+    options = merge({}, options, {
       style: "currency",
       currency: currency
     });
