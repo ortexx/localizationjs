@@ -1,4 +1,7 @@
-import { merge, has, get, escapeRegExp } from 'lodash';
+import merge from 'lodash/merge';
+import has from 'lodash/has';
+import get from 'lodash/get';
+import escapeRegExp from 'lodash/escapeRegExp';
 
 /**
  * Class to create instances of locale
