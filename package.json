@@ -1,6 +1,6 @@
 {
   "name": "localizationjs",
-  "version": "2.0.5",
+  "version": "2.0.",
   "description": "Localization module",
   "main": "./src/localization.node.js",
   "author": {
@@ -46,7 +46,7 @@
     "eslint": "^5.15.1",
     "eslint-loader": "^2.0.0",
     "husky": "^1.3.1",
-    "mocha": "^6.0.2",
+    "mocha": "^6.1.4",
     "mocha-webpack": "^1.1.0",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.21.0",
