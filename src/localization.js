@@ -92,6 +92,7 @@ export default class Localization {
    */
   setDefaultLocale(locale) {
     this.defaultLocale = new Locale(locale);
+    this.__fullDict = this.createFullDict();
   }
 
   /**
@@ -101,6 +102,7 @@ export default class Localization {
    */
   setCurrentLocale(locale) {
     this.currentLocale = new Locale(locale);
+    this.__fullDict = this.createFullDict();
   }
 
   /**
@@ -228,6 +230,7 @@ export default class Localization {
   addDict(locale, dict) {
     locale = new Locale(locale);
     this.dicts[locale.toString()] = merge({}, dict);
+    this.isLocale(locale) && (this.__fullDict = this.createFullDict());
   }
 
   /**
@@ -241,6 +244,7 @@ export default class Localization {
     let localName = locale.toString();
     let current = this.dicts[localName] || {};
     this.dicts[localName] = merge({}, current, dict);
+    this.isLocale(locale) && (this.__fullDict = this.createFullDict());
   }
 
   /**
@@ -251,14 +255,24 @@ export default class Localization {
   removeDict(locale) {
     locale = new Locale(locale);
     delete this.dicts[locale.toString()];
+    this.isLocale(locale) && (this.__fullDict = this.createFullDict());
   }
 
   /**
-   * Get union dictionary of dafault and current locale
+   * Get a union dictionary drom dafault and current locale
    * 
    * @returns {object}
    */
   getFullDict() {
+    return this.__fullDict;
+  }
+
+  /**
+   * Create a union dictionary drom dafault and current locale
+   * 
+   * @returns {object}
+   */
+  createFullDict() {
     return merge({}, this.getDict(this.defaultLocale), this.getDict(this.currentLocale));
   }
 
