@@ -1,6 +1,6 @@
 {
   "name": "localizationjs",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "Localization module",
   "main": "./src/localization.node.js",
   "author": {
@@ -24,8 +24,8 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack",
-    "build": "BUILD=true MINIMIZE=true webpack",
-    "test": "BUILD=true webpack && mocha",
+    "build": "cross-env BUILD=true MINIMIZE=true webpack",
+    "test": "cros-env BUILD=true webpack && mocha",
     "eslint": "eslint src test"
   },
   "husky": {
@@ -43,6 +43,7 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
     "eslint": "^5.16.0",
     "eslint-loader": "^2.2.1",
     "husky": "^4.2.5",
