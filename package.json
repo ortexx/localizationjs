@@ -38,19 +38,20 @@
     "lodash": "^4.17.19"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.0.0",
+    "@babel/eslint-parser": "^7.0.3",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.2.2",
     "chai": "^4.2.0",
     "cross-env": "^7.0.2",
-    "eslint": "^5.16.0",
+    "eslint": "^7.0.0",
     "eslint-loader": "^2.2.1",
+    "eslint-webpack-plugin": "^2.5.3",
     "husky": "^4.2.5",
     "mocha": "^7.2.0",
-    "terser-webpack-plugin": "^2.3.7",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "terser-webpack-plugin": "^5.0.0",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.5.0"
   },
   "repository": {
     "type": "git",
