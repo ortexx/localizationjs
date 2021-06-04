@@ -1,6 +1,6 @@
 {
   "name": "localizationjs",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "description": "Localization module",
   "main": "./src/localization.node.js",
   "author": {
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "intl": "1.2.5",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -45,7 +45,6 @@
     "chai": "^4.2.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.0.0",
-    "eslint-loader": "^2.2.1",
     "eslint-webpack-plugin": "^2.5.3",
     "husky": "^4.2.5",
     "mocha": "^7.2.0",
