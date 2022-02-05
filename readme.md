@@ -73,7 +73,7 @@ locale.translate("header.title"); // >> Привет!
 locale.translate("header.description"); // >> you can do everything
 
 // pass the params as array
-locale.translate("buttons.checkArrayParams", [5, "9:27"]); // >> click 5 times 
+locale.translate("buttons.checkArrayParams", [5, "9:27"]); // >> click 5 times before 9:27 pm
 
 // pass the params as object
 locale.translate("buttons.checkObjectParams", { hours: "9", minutes: "27" }); // >> "9:27 pm" 
@@ -126,7 +126,7 @@ locale.isLocale('ru') // >> true
   locale.translate('testNewArraySign', ['world']); // >> Hello world
   locale.translate('testNewArraySign', { name: 'world' }); // >> Hello world
 
-  // get non-existent translation by default (if undefined it returns the key)
+  // get non-existent translation by default (if undefined, it returns the key)
   locale.translate('nonExistent'); // >> nonExistent
 
   // get non-existent params by default
