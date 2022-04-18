@@ -1,6 +1,6 @@
 {
   "name": "localizationjs",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "description": "Localization module",
   "main": "./src/localization.node.js",
   "author": {
